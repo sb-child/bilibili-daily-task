@@ -1,4 +1,4 @@
-import logging
+from my_log import MyLog
 import time
 import core
 from config import config
@@ -6,14 +6,11 @@ from config import config
 
 class Runner:
     def __init__(self):
-        self.log = logging.RootLogger(logging.DEBUG)
-        self.logHandler = logging.StreamHandler()
-        self.log.addHandler(self.logHandler)
-        self.logFmt = logging.Formatter("[%(asctime)s %(levelname)s]:%(message)s")
-        self.logHandler.setFormatter(self.logFmt)
+        self.log = MyLog("Runner")
         self.biliCore = core.BilibiliCore(config.getCookies())
         self.log.info("Bilibili Daily Task")
-        self.log.info("B站每日任务自动完成工具 已初始化完成.")
+        self.log.info("B站每日任务自动完成工具")
+        self.log.info("https://github.com/sb-child/bilibili-daily-task")
 
     def getNickname(self):
         return self.biliCore.getNickname()
@@ -36,18 +33,19 @@ class Runner:
         r = self.biliCore.loginCheck()
         if r:
             self.log.info("登录成功")
+            time.sleep(3)
             self.logAccountInfo()
         else:
-            self.log.info("登录失败")
-            self.log.info("请检查cookies设置")
+            self.log.info("登录失败.请检查cookies设置")
         return r
 
     def start(self):
         if not self.loginCheck():
             self.biliCore.quit()
-            return
-        time.sleep(100)
-        self.biliCore.quit()
+            return -1
+        return 0
+        # time.sleep(100)
+        # self.biliCore.quit()
 
 
 def main():

@@ -1,7 +1,4 @@
-import time
-from config import config
 from selenium import webdriver
-import logging
 from bs4 import BeautifulSoup as Bs
 
 
