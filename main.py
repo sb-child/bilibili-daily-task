@@ -1,8 +1,9 @@
-from selenium import webdriver
+import runner
 
 
 def main():
-    pass
+    br = runner.Runner()
+    br.start()
 
 
 if __name__ == '__main__':

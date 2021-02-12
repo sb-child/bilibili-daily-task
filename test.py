@@ -26,15 +26,6 @@ def main():
         print("未登录")
     else:
         print("已登录")
-
-    # drv.get("https://passport.bilibili.com/login")
-    # drv.delete_all_cookies()
-    # time.sleep(60)
-    # ck = drv.get_cookies()
-    # print(ck)
-    # drv.get("https://www.bilibili.com/")
-    # drv.refresh()
-    # drv
     time.sleep(1000)
     drv.close()
 
