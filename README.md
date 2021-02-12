@@ -7,7 +7,7 @@ bilibili-daily-task
 </h2>
 
 [![GitHub stars](https://img.shields.io/github/stars/sb-child/bilibili-daily-task?label=stars%2F%E6%98%9F%E6%A0%87&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/sb-child/bilibili-daily-task?label=fork%2F%E5%88%86%E6%94%AF&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/network)
+[![GitHub forks](https://img.shields.io/github/forks/sb-child/bilibili-daily-task?label=forks%2F%E5%88%86%E6%94%AF&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/network)
 [![GitHub issues](https://img.shields.io/github/issues/sb-child/bilibili-daily-task?label=issues%2F%E8%AE%AE%E9%A2%98&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/issues)
 [![GitHub license](https://img.shields.io/github/license/sb-child/bilibili-daily-task?label=license%2F%E8%AE%B8%E5%8F%AF%E8%AF%81&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/blob/main/LICENSE)
 </div>
