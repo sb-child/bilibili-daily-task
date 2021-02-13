@@ -121,8 +121,8 @@ class Mod(BaseMod):
             self.drv.back()
             self.log.info("节日相关视频, 放弃")
             return 1
-        # 点赞 (投币自动点赞)
-        if like and not coin:
+        # 点赞
+        if like:
             self._likeVideo()
         # 投币
         if coin:
@@ -143,6 +143,6 @@ class Mod(BaseMod):
             self.log.info(f"第{i + 1}次执行...")
             # 只分享一次
             while True:
-                if self.coinVideo(self.getVideoUrlInRecommend(), share=False if i != 0 else True) == 0:
+                if self.coinVideo(self.getVideoUrlInRecommend(), share=True if i == 0 else False) == 0:
                     break
             self.sleep()
