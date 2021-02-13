@@ -129,7 +129,8 @@ class Mod(BaseMod):
             self._coinVideo(coin_1)
         # 分享
         if share:
-            self._shareVideo()
+            self.log.warning("分享有已知问题, 暂不执行")
+            # self._shareVideo()
         # 观看视频
         if watch:
             self._watchVideo()
