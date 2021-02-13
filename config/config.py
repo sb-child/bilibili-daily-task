@@ -1,6 +1,10 @@
 import os
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
+# --- 用户设置 ---
+# 无头模式
+HEADLESS = False
+# --- end ---
 
 
 def getCookies():

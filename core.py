@@ -3,12 +3,19 @@ from bs4 import BeautifulSoup as Bs
 
 
 class BilibiliCore:
-    def __init__(self, cookies: list[dict]):
+    def __init__(self, cookies: list[dict], headless=False):
         # set "navigator.webdriver" to undefined
         self.drvProfile = webdriver.FirefoxProfile()
         self.drvProfile.set_preference("dom.webdriver.enabled", False)
+        # headless mode
+        self.drvOptions = webdriver.FirefoxOptions()
+        if headless:
+            self.drvOptions.add_argument("-headless")
         # basic
-        self.drv = webdriver.Firefox(firefox_profile=self.drvProfile)
+        self.drv = webdriver.Firefox(
+            firefox_profile=self.drvProfile,
+            firefox_options=self.drvOptions,
+        )
         self.cookies = cookies
         self.isLogin = False
         # method mapping

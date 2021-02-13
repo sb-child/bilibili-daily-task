@@ -7,7 +7,10 @@ from config import config
 class Runner:
     def __init__(self):
         self.log = MyLog("Runner")
-        self.biliCore = core.BilibiliCore(config.getCookies())
+        self.biliCore = core.BilibiliCore(
+            cookies=config.getCookies(),
+            headless=config.HEADLESS,
+        )
         self.log.info("Bilibili Daily Task")
         self.log.info("B站每日任务自动完成工具")
         self.log.info("https://github.com/sb-child/bilibili-daily-task")
