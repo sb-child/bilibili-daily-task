@@ -24,7 +24,8 @@ bilibili-daily-task
 - [ ] 正在完善...
 
 ### 测试 / test
-> 随机获取视频, 点赞转发5次 [link](https://www.sbchild.top/bdt_1.mp4)
+> 随机获取视频, 点赞转发 5 次 [link](https://www.sbchild.top/bdt_1.mp4)
+> 额外: 随机获取视频, 点赞转发 50+ 次 (尽可能多的找出潜在的bug)
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀

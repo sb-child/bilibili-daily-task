@@ -26,9 +26,12 @@ class Mod(BaseMod):
 
     def coinVideo(self, url: str, like=True, coin=True, coin_1=True, share=True, watch=True):
         self.log.info(f"选定视频[{url}]")
-        self.log.info(f"投币[{'0' if not coin else '1' if coin_1 else '2'}] "
-                      f"转发[{'x' if share else ' '}] "
-                      f"观看[{'x' if watch else ' '}]")
+        self.log.info(
+            f"点赞[{'x' if like else ' '}] "
+            f"投币[{'0' if not coin else '1' if coin_1 else '2'}] "
+            f"转发[{'x' if share else ' '}] "
+            f"观看[{'x' if watch else ' '}]"
+        )
         self.drv.get(url)
         for i in range(6):
             self.sleep()
@@ -79,9 +82,10 @@ class Mod(BaseMod):
             shareUrl = str(ifr.get_attribute("src"))
             # share
             self.drv.get(shareUrl)
+            self.sleep()
             btn = self.drv.find_element_by_css_selector("div.share-step > div.btn-field > button.share-btn")
             btn.click()
-            self.shortSleep()
+            self.sleep()
             self.drv.back()
             # share end
             self.sleep()
