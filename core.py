@@ -11,6 +11,7 @@ class BilibiliCore:
         self.drvOptions = webdriver.FirefoxOptions()
         if headless:
             self.drvOptions.add_argument("-headless")
+            self.drvOptions.add_argument("-disable-gpu")
         # basic
         self.drv = webdriver.Firefox(
             firefox_profile=self.drvProfile,
