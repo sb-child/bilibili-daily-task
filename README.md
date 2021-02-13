@@ -56,3 +56,6 @@ python3 main.py
 ### 配置文件 / config files
 > 配置文件目录:`config/`
 > 相关说明在此目录中
+
+### 注意事项 / warning
+> - 运行过程中, 不要将鼠标光标放入浏览器网页区域内.
