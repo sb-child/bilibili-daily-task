@@ -12,7 +12,6 @@ class Mod(BaseMod):
 
     def getVideoUrlInRecommend(self):
         self.log.info(f"随机获取视频...")
-        # self.sleep()
         for i in range(2):
             self.drv.find_element_by_class_name("change-btn").click()
             self.sleep()
@@ -33,6 +32,12 @@ class Mod(BaseMod):
         self.drv.get(url)
         for i in range(6):
             self.sleep()
+        # 不支持节日视频(如:拜年纪)
+        pageUrl = str(self.drv.current_url)
+        if pageUrl.find("festival") != -1:
+            self.drv.back()
+            self.log.info("节日相关视频, 放弃")
+            return 1
         # ----
         # 点赞 (投币自动点赞)
         if like and not coin:
@@ -114,13 +119,16 @@ class Mod(BaseMod):
             self.log.info("观看完成")
         self.drv.back()
         self.log.info("操作完成")
+        return 0
 
     def loop(self, count: int):
         self.log.info(f"连续投币{count}次...")
         for i in range(count):
             self.log.info(f"第{i + 1}次投币...")
             # 只分享一次
-            self.coinVideo(self.getVideoUrlInRecommend(), share=False if i != 0 else True)
+            while True:
+                if self.coinVideo(self.getVideoUrlInRecommend(), share=False if i != 0 else True) == 0:
+                    break
             self.sleep()
 
     def autoLoop(self):

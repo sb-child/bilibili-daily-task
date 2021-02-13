@@ -12,8 +12,10 @@ def main():
     #     time.sleep(3)
     #     pass
     # mod1.loop(1)
-    for i in range(5):
-        mod1.coinVideo(mod1.getVideoUrlInRecommend(), coin=False, share=True, watch=True)
+    for i in range(100):
+        while True:
+            if mod1.coinVideo(mod1.getVideoUrlInRecommend(), coin=False, share=True, watch=True) == 0:
+                break
     time.sleep(3)
     br.biliCore.quit()
 
