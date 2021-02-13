@@ -26,7 +26,7 @@ class Mod(BaseMod):
 
     def _checkFestivalVideo(self):
         pageUrl = str(self.drv.current_url)
-        if pageUrl.find("festival") != -1:
+        if pageUrl.find("festival") == -1:
             return False
         return True
 
