@@ -23,7 +23,7 @@ class Mod(BaseMod):
         return videoUrl
 
     def coinVideo(self, url: str, coin=True, coin_1=True, share=True, watch=True):
-        self.log.info(f"为视频[{url}]投币...")
+        self.log.info(f"选定视频[{url}]")
         self.log.info(f"投币[{'0' if not coin else '1' if coin_1 else '2'}] "
                       f"转发[{'x' if share else ' '}] "
                       f"观看[{'x' if watch else ' '}]")

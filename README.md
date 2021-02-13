@@ -34,7 +34,7 @@ bilibili-daily-task
 #### 安装依赖库
 > 针对linux系统. Windows用户需将`pip3`改为`pip`.
 ```
-pip3 install bs4 urllib lxml selenium
+pip3 install bs4 urllib3 lxml selenium
 ```
 
 #### 安装firefox浏览器和driver
