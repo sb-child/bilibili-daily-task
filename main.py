@@ -9,7 +9,7 @@ def main():
         return 1
     mod1 = mod_coin.Mod(br)
     time.sleep(3)
-    mod1.loop(2)
+    mod1.loop(1)
 
 
 if __name__ == '__main__':

@@ -15,6 +15,9 @@ bilibili-daily-task
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
+### todo
+- [ ] 修复bug: `分享`按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)
+
 ### 功能 / functions
 - [x] 使用cookies登录
 - [x] 自动投币
@@ -41,7 +44,7 @@ todo
 ```
 
 #### 设置cookie
-> 修改[配置文件](### 配置文件 / config files)
+> 修改 配置文件
 
 #### 运行
 > 针对linux系统. Windows用户需将`python3`改为`python`.
