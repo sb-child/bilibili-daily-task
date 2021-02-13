@@ -23,6 +23,9 @@ bilibili-daily-task
 - [x] 自动观看, 点赞, 投币, 分享
 - [ ] 正在完善...
 
+### 测试 / test
+> 随机获取视频, 点赞转发5次 [link](https://www.sbchild.top/bdt_1.mp4)
+
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
 
