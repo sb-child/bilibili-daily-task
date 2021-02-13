@@ -12,6 +12,8 @@ bilibili-daily-task
 [![GitHub license](https://img.shields.io/github/license/sb-child/bilibili-daily-task?label=license%2F%E8%AE%B8%E5%8F%AF%E8%AF%81&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/blob/main/LICENSE)
 </div>
 
+## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
+
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
