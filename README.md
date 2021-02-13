@@ -16,7 +16,7 @@ bilibili-daily-task
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### todo
-- [ ] 修复bug: `分享`按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)
+- [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
 
 ### 功能 / functions
 - [x] 使用cookies登录
