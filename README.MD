@@ -16,9 +16,9 @@ bilibili-daily-task
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### 功能 / functions
-> [x] 使用cookies登录
-> [x] 自动投币
-> [ ] 正在完善...
+- [x] 使用cookies登录
+- [x] 自动投币
+- [ ] 正在完善...
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
