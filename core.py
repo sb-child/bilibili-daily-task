@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as Bs
 
 
 class BilibiliCore:
-    def __init__(self, cookies: list[dict], headless=False):
+    def __init__(self, cookies: list, headless=False):
         # set "navigator.webdriver" to undefined
         self.drvProfile = webdriver.FirefoxProfile()
         self.drvProfile.set_preference("dom.webdriver.enabled", False)
