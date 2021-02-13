@@ -17,7 +17,6 @@ class BilibiliCore:
         self.quit = self.drv.quit
         self.closeWindow = self.drv.close
 
-
     def setCookies(self):
         for i in self.cookies:
             self.drv.add_cookie(i)

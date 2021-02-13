@@ -28,6 +28,7 @@ bilibili-daily-task
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
+> - 移除了`navigator.webdriver`接口
 
 ### 如何使用 / how to use
 #### 安装python环境
