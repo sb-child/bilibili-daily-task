@@ -18,8 +18,8 @@ def main():
     # """
     # 默认看5次视频, 点5次赞, 转发1次, 投5个硬币
     # mod1.loop()
-    # time.sleep(3)
-    # br.biliCore.quit()
+    time.sleep(3)
+    br.biliCore.quit()
 
 
 if __name__ == '__main__':
