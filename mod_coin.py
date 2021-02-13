@@ -9,6 +9,7 @@ from base_mod import BaseMod
 class Mod(BaseMod):
     def __init__(self, run: runner.Runner):
         super().__init__(run, "coin", "自动投币模块")
+        self.firstTime = True
 
     def getVideoUrlInRecommend(self):
         self.log.info(f"随机获取视频...")
@@ -114,6 +115,10 @@ class Mod(BaseMod):
             f"观看[{'x' if watch else ' '}]"
         )
         self.drv.get(url)
+        if self.firstTime:
+            # 使用缓存加快访问速度, 同时减少出错率
+            self.drv.refresh()
+            # self.drv.get(url)
         for i in range(6):
             self.sleep()
         # 不支持节日视频(如:拜年纪)
@@ -126,7 +131,11 @@ class Mod(BaseMod):
             self._likeVideo()
         # 投币
         if coin:
-            self._coinVideo(coin_1)
+            try:
+                self._coinVideo(coin_1)
+            except selenium.common.exceptions.NoSuchElementException:
+                self.log.warning("弹出登录对话框, 自动关闭")
+                # todo: 自动关闭登录对话框
         # 分享
         if share:
             self.log.warning("分享有已知问题, 暂不执行")

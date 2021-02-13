@@ -19,9 +19,11 @@ bilibili-daily-task
 
 ### todo
 - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
+- [ ] bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)
 
 ### 已知bug / known bugs
 > - 有时会弹出登录框. 正在寻找原因
+> - 分享 功能有时会出问题, 故禁用. 可修改源代码启用
 
 ### 功能 / functions
 - [x] 使用cookies登录
