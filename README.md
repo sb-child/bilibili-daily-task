@@ -20,7 +20,7 @@ bilibili-daily-task
 
 ### 功能 / functions
 - [x] 使用cookies登录
-- [x] 自动投币
+- [x] 自动观看, 投币, 分享
 - [ ] 正在完善...
 
 ### 特点 / feature
@@ -51,6 +51,7 @@ todo
 ```
 python3 main.py
 ```
+> 可自行修改此文件, 定制功能
 
 ### 配置文件 / config files
 > 配置文件目录:`config/`

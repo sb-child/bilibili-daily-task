@@ -2,17 +2,13 @@ import runner
 import bs4
 import random
 import time
-from my_log import MyLog
 from selenium.webdriver import ActionChains
+from base_mod import BaseMod
 
 
-class Mod:
+class Mod(BaseMod):
     def __init__(self, run: runner.Runner):
-        self.coreShell = run
-        self.drv = self.coreShell.biliCore.drv
-        self.core = self.coreShell.biliCore
-        self.log = MyLog("Mod:Coin")
-        self.log.info("模块:自动投币模块")
+        super().__init__(run, "coin", "自动投币模块")
 
     def getVideoUrlInRecommend(self):
         self.log.info(f"随机获取视频...")
@@ -36,6 +32,7 @@ class Mod:
         # ----
         # 点击 投币 按钮
         if coin:
+            self.log.info("投币中...")
             self.drv.find_element_by_class_name("coin").click()
             time.sleep(1)
             # 数量
@@ -47,49 +44,49 @@ class Mod:
             # 投币
             self.drv.find_element_by_class_name("bi-btn").click()
             time.sleep(1)
+            self.log.info("投币完成")
         # ----
         # 分享
         if share:
+            self.log.info("分享中...")
             shareBtn1 = self.drv.find_element_by_class_name("share")
             time.sleep(1)
             act = ActionChains(self.drv)
             act.move_to_element(shareBtn1).perform()
             self.drv.find_element_by_xpath("//div[@class='share-down']/span[1]").click()
             time.sleep(1)
-            # act.reset_actions()
             ifr = self.drv.find_element_by_xpath("//div/iframe[@name='dynmic-share']")
             shareUrl = str(ifr.get_attribute("src"))
+            # share
             self.drv.get(shareUrl)
             btn = self.drv.find_element_by_css_selector("div.share-step > div.btn-field > button.share-btn")
             btn.click()
             time.sleep(0.5)
             self.drv.back()
-            # -- into iframe
-            # self.drv.switch_to.frame(ifr)
-            # time.sleep(1)
-            # btn = self.drv.find_element_by_css_selector("div.share-step > div.btn-field > button.share-btn")  # worked
-            # act = ActionChains(self.drv)
-            # act.move_to_element(btn).perform()
-            # act.click(btn).perform()
-            # ----
+            # share end
             time.sleep(1)
-            act.reset_actions()
-            self.drv.switch_to.default_content()
-            # -- back to default
-            time.sleep(1)
+            self.log.info("分享完成")
         # ----
         # back to index
         # 观看视频
         if watch:
-            # playBtn = self.drv.find_element_by_class_name("bilibili-player-video")
+            self.log.info("观看中...")
+            while True:
+                loadMask = self.drv.find_element_by_class_name("bilibili-player-video-panel")
+                loadMaskStyle = str(loadMask.get_attribute("style"))
+                if loadMaskStyle.find("none") != -1:
+                    break
+                self.log.info("等待视频加载完成...")
+                time.sleep(1)
             playBtn = self.drv.find_element_by_class_name("bilibili-player-dm-tip-wrap")
             act = ActionChains(self.drv)
             act.move_to_element(playBtn).perform()
             playBtn.click()
             time.sleep(5)
             playBtn.click()
+            self.log.info("观看完成")
         self.drv.back()
-        self.log.info(f"投币完成")
+        self.log.info("操作完成")
 
     def loop(self, count: int):
         self.log.info(f"连续投币{count}次...")
