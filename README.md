@@ -20,7 +20,7 @@ bilibili-daily-task
 
 ### 功能 / functions
 - [x] 使用cookies登录
-- [x] 自动观看, 投币, 分享
+- [x] 自动观看, 点赞, 投币, 分享
 - [ ] 正在完善...
 
 ### 特点 / feature
