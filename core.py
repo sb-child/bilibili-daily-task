@@ -4,8 +4,11 @@ from bs4 import BeautifulSoup as Bs
 
 class BilibiliCore:
     def __init__(self, cookies: list[dict]):
+        # set "navigator.webdriver" to undefined
+        self.drvProfile = webdriver.FirefoxProfile()
+        self.drvProfile.set_preference("dom.webdriver.enabled", False)
         # basic
-        self.drv = webdriver.Firefox()
+        self.drv = webdriver.Firefox(firefox_profile=self.drvProfile)
         self.cookies = cookies
         self.isLogin = False
         # method mapping
@@ -13,6 +16,7 @@ class BilibiliCore:
         self.clearCookies = self.drv.delete_all_cookies
         self.quit = self.drv.quit
         self.closeWindow = self.drv.close
+
 
     def setCookies(self):
         for i in self.cookies:
