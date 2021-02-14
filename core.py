@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from bs4 import BeautifulSoup as Bs
 
@@ -31,6 +33,15 @@ class BilibiliCore:
         for i in self.cookies:
             self.drv.add_cookie(i)
 
+    def writeCookies(self):
+        cfgFile = f"config{os.path.sep}cookie.txt"
+        cfgFileObj = open(cfgFile, mode="w")
+        for kv in self.drv.get_cookies():
+            key = kv["name"]
+            val = kv["value"]
+            cfgFileObj.write(f"{key}={val};")
+        cfgFileObj.close()
+
     def getPageHtml(self):
         bd = self.drv.find_element_by_tag_name("html")
         html: str = bd.get_attribute("outerHTML")
@@ -42,6 +53,7 @@ class BilibiliCore:
         if len(loginBtn) > 0 or len(loginBtn1) > 0:
             return False
         else:
+            self.writeCookies()
             return True
 
     def getNickname(self) -> str:

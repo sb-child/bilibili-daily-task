@@ -3,7 +3,7 @@
 bilibili-daily-task
 </h1>
 <h2 align="center">
-自动完成 <a href="https://bilibili.com">Bilibili</a> 的每日任务(开发中)
+自动完成 <a href="https://bilibili.com">哔哩哔哩</a> 的每日任务(开发中)
 </h2>
 
 [![GitHub stars](https://img.shields.io/github/stars/sb-child/bilibili-daily-task?label=stars%2F%E6%98%9F%E6%A0%87&style=flat-square)](https://github.com/sb-child/bilibili-daily-task/stargazers)
@@ -14,7 +14,7 @@ bilibili-daily-task
 
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 以尝试探索更好的方法
-## 此次合并: 2021/2/14 23:36
+## 此次合并: 2021/2/15 2:12
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
@@ -22,6 +22,7 @@ bilibili-daily-task
 ### todo
 - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
 - [x] ~bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
+- [x] bug: 有时, 不能正常点赞
 
 ### 已知bug / known bugs
 > - 有时会弹出登录框. 正在寻找原因 ~, 可能是网络问题~ ,此现象有所缓解
@@ -29,7 +30,8 @@ bilibili-daily-task
 > - 窗口较小时, 会报错
 
 ### 功能 / functions
-- [x] 使用cookies登录
+- [x] 使用自定义cookies登录
+- [x] 手机端扫描二维码登录, 自动设置cookies
 - [x] 自动观看, 点赞, 投币, 分享
 - [ ] 逐步完善...
 
@@ -41,6 +43,11 @@ bilibili-daily-task
 > - 模拟操控浏览器, 尽可能防止被封杀
 > - 移除了`navigator.webdriver`接口
 > - 无头模式 (见 配置文件)
+> - 支持手机端扫描二维码设置cookies
+
+### Api
+> 参考了以下api:
+> - [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
 
 ### 如何使用 / how to use
 #### 安装python环境
@@ -50,7 +57,7 @@ bilibili-daily-task
 #### 安装依赖库
 > 针对linux系统. Windows用户需将`pip3`改为`pip`.
 ```
-pip3 install bs4 urllib3 lxml selenium
+pip3 install bs4 urllib3 lxml selenium requests qrcode
 ```
 
 #### 安装firefox浏览器和driver
@@ -60,7 +67,8 @@ todo
 ```
 
 #### 设置cookie
-> 修改 配置文件
+> 手动修改 配置文件
+> 或, 运行脚本 `auto_config.py` 通过手机端扫描二维码自动设置cookies
 
 #### 运行
 > 针对linux系统. Windows用户需将`python3`改为`python`.

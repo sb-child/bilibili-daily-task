@@ -13,6 +13,8 @@ def getCookies():
     f.close()
     c_list = []
     for i in cookie_text.split(";"):
+        if i == "":
+            continue
         i = i.strip()
         j = i.split("=")
         item = {'name': j[0].strip(), 'value': j[1].strip(), 'path': '/',
