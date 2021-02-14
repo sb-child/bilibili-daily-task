@@ -15,18 +15,18 @@ bilibili-daily-task
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 以尝试探索更好的方法
 
-[comment]: <> (## 此次合并: 2021/2/15 2:12)
+## 此次合并: 2021/2/15 2:49
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### todo
 > - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
-> - [x] ~bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
-> - [x] bug: 有时, 不能正常点赞
+> - [x] ~修复bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
+> - [x] ~修复bug: 有时, 不能正常点赞~
 
 ### 已知bug / known bugs
-> - 有时会弹出登录框. 正在寻找原因 ~, 可能是网络问题~ ,此现象有所缓解
+> - ~有时会弹出登录框.~
 > - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
 > - 窗口较小时, 会报错
 
@@ -39,15 +39,18 @@ bilibili-daily-task
 ### 测试 / test
 > - 随机获取视频, 点赞转发 5 次 ([link](https://www.sbchild.top/bdt_1.mp4))
 > - 额外: 随机获取视频, 点赞转发 50+ 次 (尽可能多的找出潜在的bug)
+> - 随机获取视频, 点赞转发 5 次 (目前的版本: 2021/2/15 2:49)
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
 > - 移除了`navigator.webdriver`接口
 > - 无头模式 (见 配置文件)
+> - 浏览器默认静音
+> - 使用`ActionChains`完成页面操作, 提高"安全性"
 > - 支持手机端扫描二维码设置cookies
 
 ### Api
-> - 参考了以下api:
+> - 参考了以下api文档:
 > - [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
 
 ### 如何使用 / how to use
@@ -61,10 +64,18 @@ bilibili-daily-task
 pip3 install bs4 urllib3 lxml selenium requests qrcode
 ```
 
-#### 安装firefox浏览器和driver
-> todo...
+#### 安装firefox浏览器和driver(`geckodriver`)
+> - 安装firefox
+> - windows用户, 去官方网站下载并放到此项目的根目录.
+> - linux用户:
 ```
-todo
+# archlinux:
+sudo pacman -S geckodriver
+
+# debian/ubuntu:
+sudo apt install firefox-geckodriver
+
+其他发行版, 去其软件库搜索...
 ```
 
 #### 设置cookie

@@ -14,10 +14,7 @@ class Mod(BaseMod):
 
     def clickEvent(self, ele: WebElement):
         act = ActionChains(self.drv)
-        # self.drv.set_window_position()
-        act.move_to_element(ele)  # .perform()
-        # act.reset_actions()
-        # self.shortSleep()
+        act.move_to_element(ele)
         act.click(ele).perform()
         self.shortSleep()
         act.reset_actions()
@@ -45,12 +42,25 @@ class Mod(BaseMod):
     def _likeVideo(self):
         self.log.info("点赞中...")
         likeBtn = self.drv.find_element_by_class_name("like")
-        if str(likeBtn.get_attribute("class")).find("on") == -1:
+
+        def isLiked():
+            return str(likeBtn.get_attribute("class")).find("on") != -1
+
+        if not isLiked():
             self.clickEvent(likeBtn)
             self.sleep()
         else:
             self.log.warning("此视频已点过赞")
-        self.log.info("点赞完成")
+        likeRetryNum = 5
+        while not isLiked():
+            self.log.warning("点赞失败, 重试...")
+            self.clickEvent(likeBtn)
+            self.sleep()
+            likeRetryNum -= 1
+            if likeRetryNum <= 0:
+                self.log.warning("点赞失败, 放弃")
+                break
+        self.log.info("点赞完成" + (", 但是放弃了" if likeRetryNum <= 0 else ""))
 
     def _coinVideo(self, coin_1: bool):
         self.log.info("投币中...")
