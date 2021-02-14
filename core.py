@@ -4,12 +4,14 @@ from bs4 import BeautifulSoup as Bs
 
 class BilibiliCore:
     def __init__(self, cookies: list, headless=False):
-        # set "navigator.webdriver" to undefined
         self.drvProfile = webdriver.FirefoxProfile()
+        # set "navigator.webdriver" to undefined
         self.drvProfile.set_preference("dom.webdriver.enabled", False)
-        # headless mode
+        # and mute it
+        self.drvProfile.set_preference("media.volume_scale", "0.0")
         self.drvOptions = webdriver.FirefoxOptions()
         if headless:
+            # headless mode
             self.drvOptions.add_argument("-headless")
             self.drvOptions.add_argument("-disable-gpu")
         # basic

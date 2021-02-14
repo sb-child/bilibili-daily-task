@@ -14,10 +14,12 @@ class Mod(BaseMod):
 
     def clickEvent(self, ele: WebElement):
         act = ActionChains(self.drv)
-        act.move_to_element(ele).perform()
-        act.reset_actions()
-        self.shortSleep()
+        # self.drv.set_window_position()
+        act.move_to_element(ele)  # .perform()
+        # act.reset_actions()
+        # self.shortSleep()
         act.click(ele).perform()
+        self.shortSleep()
         act.reset_actions()
 
     def getVideoUrlInRecommend(self):
@@ -124,6 +126,7 @@ class Mod(BaseMod):
         if self.firstTime:
             # 使用缓存加快访问速度, 同时减少出错率
             self.drv.refresh()
+            self.firstTime = False
             # self.drv.get(url)
         for i in range(6):
             self.sleep()
@@ -137,15 +140,15 @@ class Mod(BaseMod):
             self._likeVideo()
         # 投币
         if coin:
-            try:
-                self._coinVideo(coin_1)
-            except selenium.common.exceptions.NoSuchElementException:
-                self.log.warning("弹出登录对话框, 自动关闭")
-                # todo: 自动关闭登录对话框
+            # try:
+            self._coinVideo(coin_1)
+            # except selenium.common.exceptions.NoSuchElementException:
+            #     self.log.warning("弹出登录对话框, 自动关闭")
+            #     # todo: 自动关闭登录对话框
         # 分享
         if share:
-            self.log.warning("分享有已知问题, 暂不执行")
-            # self._shareVideo()
+            # self.log.warning("分享有已知问题, 暂不执行")
+            self._shareVideo()
         # 观看视频
         if watch:
             self._watchVideo()
