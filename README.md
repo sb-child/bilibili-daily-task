@@ -31,7 +31,7 @@ bilibili-daily-task
 ### 功能 / functions
 - [x] 使用cookies登录
 - [x] 自动观看, 点赞, 投币, 分享
-- [ ] 正在完善...
+- [ ] 逐步完善...
 
 ### 测试 / test
 > 随机获取视频, 点赞转发 5 次 ([link](https://www.sbchild.top/bdt_1.mp4))  
