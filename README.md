@@ -13,6 +13,7 @@ bilibili-daily-task
 </div>
 
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
+## 目前的开发已移至`dev`等分支, 以尝试探索更好的方法
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
@@ -22,7 +23,7 @@ bilibili-daily-task
 - [ ] bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)
 
 ### 已知bug / known bugs
-> - 有时会弹出登录框. 正在寻找原因
+> - 有时会弹出登录框. 正在寻找原因, 可能是网络问题
 > - 分享 功能有时会出问题, 故禁用. 可修改源代码启用
 
 ### 功能 / functions
