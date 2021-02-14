@@ -47,8 +47,6 @@ class Runner:
             self.biliCore.quit()
             return -1
         return 0
-        # time.sleep(100)
-        # self.biliCore.quit()
 
 
 def main():

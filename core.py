@@ -45,14 +45,11 @@ class BilibiliCore:
     def getNickname(self) -> str:
         html = self.getPageHtml()
         lb = html.select_one("p.nickname")
-        # lb = self.drv.find_element_by_xpath("//div[@class='vp-container']/p[@class='nickname']")
-        # print(lb.text)
         return lb.text
 
     def _get_money_count(self, href: str):
         html = self.getPageHtml()
         lb = html.select_one(f"a[href=\"{href}\"] > span")
-        # lb = self.drv.find_element_by_xpath(f"//a[@href='{href}']/span")
         return float(lb.text)
 
     def getCoinCount(self):
