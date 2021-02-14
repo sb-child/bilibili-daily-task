@@ -14,15 +14,16 @@ bilibili-daily-task
 
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 以尝试探索更好的方法
-## 此次合并: 2021/2/15 2:12
+
+[comment]: <> (## 此次合并: 2021/2/15 2:12)
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### todo
-- [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
-- [x] ~bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
-- [x] bug: 有时, 不能正常点赞
+> - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
+> - [x] ~bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
+> - [x] bug: 有时, 不能正常点赞
 
 ### 已知bug / known bugs
 > - 有时会弹出登录框. 正在寻找原因 ~, 可能是网络问题~ ,此现象有所缓解
@@ -30,14 +31,14 @@ bilibili-daily-task
 > - 窗口较小时, 会报错
 
 ### 功能 / functions
-- [x] 使用自定义cookies登录
-- [x] 手机端扫描二维码登录, 自动设置cookies
-- [x] 自动观看, 点赞, 投币, 分享
-- [ ] 逐步完善...
+> - [x] 使用自定义cookies登录
+> - [x] 手机端扫描二维码登录, 自动设置cookies
+> - [x] 自动观看, 点赞, 投币, 分享
+> - [ ] 逐步完善...
 
 ### 测试 / test
-> 随机获取视频, 点赞转发 5 次 ([link](https://www.sbchild.top/bdt_1.mp4))  
-> 额外: 随机获取视频, 点赞转发 50+ 次 (尽可能多的找出潜在的bug)
+> - 随机获取视频, 点赞转发 5 次 ([link](https://www.sbchild.top/bdt_1.mp4))
+> - 额外: 随机获取视频, 点赞转发 50+ 次 (尽可能多的找出潜在的bug)
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
@@ -46,13 +47,13 @@ bilibili-daily-task
 > - 支持手机端扫描二维码设置cookies
 
 ### Api
-> 参考了以下api:
+> - 参考了以下api:
 > - [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
 
 ### 如何使用 / how to use
 #### 安装python环境
-> 版本建议 python3.8 +
-> 详细步骤参考相关文章
+> - 版本建议 python3.8 +
+> - 详细步骤参考相关文章
 
 #### 安装依赖库
 > 针对linux系统. Windows用户需将`pip3`改为`pip`.
@@ -67,19 +68,19 @@ todo
 ```
 
 #### 设置cookie
-> 手动修改 配置文件
-> 或, 运行脚本 `auto_config.py` 通过手机端扫描二维码自动设置cookies
+> - 手动修改 配置文件
+> - 或, 运行脚本 `auto_config.py` 通过手机端扫描二维码自动设置cookies
 
 #### 运行
-> 针对linux系统. Windows用户需将`python3`改为`python`.
+> - 针对linux系统. Windows用户需将`python3`改为`python`.
 ```
 python3 main.py
 ```
-> 可自行修改此文件, 定制功能
+> - 可自行修改此文件, 定制功能
 
 ### 配置文件 / config files
-> 配置文件目录:`config/`
-> 相关说明在此目录中
+> - 配置文件目录:`config/`
+> - 相关说明在此目录中
 
 ### 注意事项 / warning
 > - 运行过程中, 不要将鼠标光标放入浏览器网页区域内.
