@@ -14,17 +14,19 @@ bilibili-daily-task
 
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 以尝试探索更好的方法
+## 此次合并: 2021/2/14 23:36
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### todo
 - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
-- [ ] bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)
+- [x] ~bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
 
 ### 已知bug / known bugs
-> - 有时会弹出登录框. 正在寻找原因, 可能是网络问题
-> - 分享 功能有时会出问题, 故禁用. 可修改源代码启用
+> - 有时会弹出登录框. 正在寻找原因 ~, 可能是网络问题~ ,此现象有所缓解
+> - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
+> - 窗口较小时, 会报错
 
 ### 功能 / functions
 - [x] 使用cookies登录
@@ -74,3 +76,4 @@ python3 main.py
 ### 注意事项 / warning
 > - 运行过程中, 不要将鼠标光标放入浏览器网页区域内.
 > - 若脚本抛出异常并终止, 导致处于无头模式的浏览器仍在运行, 使用`kill_browser.py`结束后台的浏览器进程(暂不支持windows).
+> - 网络不好(访问b站很慢)的情况下, 使用此脚本可能会时不时的崩溃.

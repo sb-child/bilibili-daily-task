@@ -3,6 +3,7 @@ import bs4
 import random
 import selenium.common.exceptions
 from selenium.webdriver import ActionChains
+from selenium.webdriver.remote.webelement import WebElement
 from base_mod import BaseMod
 
 
@@ -11,10 +12,20 @@ class Mod(BaseMod):
         super().__init__(run, "coin", "自动投币模块")
         self.firstTime = True
 
+    def clickEvent(self, ele: WebElement):
+        act = ActionChains(self.drv)
+        # self.drv.set_window_position()
+        act.move_to_element(ele)  # .perform()
+        # act.reset_actions()
+        # self.shortSleep()
+        act.click(ele).perform()
+        self.shortSleep()
+        act.reset_actions()
+
     def getVideoUrlInRecommend(self):
         self.log.info(f"随机获取视频...")
         for i in range(2):
-            self.drv.find_element_by_class_name("change-btn").click()
+            self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
             self.sleep()
         rootHtml = self.core.getPageHtml()
         self.sleep()
@@ -35,7 +46,7 @@ class Mod(BaseMod):
         self.log.info("点赞中...")
         likeBtn = self.drv.find_element_by_class_name("like")
         if str(likeBtn.get_attribute("class")).find("on") == -1:
-            likeBtn.click()
+            self.clickEvent(likeBtn)
             self.sleep()
         else:
             self.log.warning("此视频已点过赞")
@@ -43,16 +54,16 @@ class Mod(BaseMod):
 
     def _coinVideo(self, coin_1: bool):
         self.log.info("投币中...")
-        self.drv.find_element_by_class_name("coin").click()
+        self.clickEvent(self.drv.find_element_by_class_name("coin"))
         self.sleep()
         # 数量
         if coin_1:
-            self.drv.find_element_by_class_name("left-con").click()
+            self.clickEvent(self.drv.find_element_by_class_name("left-con"))
         else:
-            self.drv.find_element_by_class_name("right-con").click()
+            self.clickEvent(self.drv.find_element_by_class_name("right-con"))
         self.sleep()
         # 投币
-        self.drv.find_element_by_class_name("bi-btn").click()
+        self.clickEvent(self.drv.find_element_by_class_name("bi-btn"))
         self.sleep()
         self.log.info("投币完成")
 
@@ -60,8 +71,7 @@ class Mod(BaseMod):
         self.log.info("分享中...")
         shareBtn1 = self.drv.find_element_by_class_name("share")
         self.sleep()
-        act = ActionChains(self.drv)
-        act.move_to_element(shareBtn1).perform()
+        self.clickEvent(shareBtn1)
         self.drv.find_element_by_xpath("//div[@class='share-down']/span[1]").click()
         self.sleep()
         ifr = self.drv.find_element_by_xpath("//div/iframe[@name='dynmic-share']")
@@ -70,7 +80,7 @@ class Mod(BaseMod):
         self.drv.get(shareUrl)
         self.sleep()
         btn = self.drv.find_element_by_css_selector("div.share-step > div.btn-field > button.share-btn")
-        btn.click()
+        self.clickEvent(btn)
         self.sleep()
         self.drv.back()
         # share end
@@ -94,11 +104,9 @@ class Mod(BaseMod):
         while True:
             try:
                 playBtn = self.drv.find_element_by_class_name("bilibili-player-dm-tip-wrap")
-                act = ActionChains(self.drv)
-                act.move_to_element(playBtn).perform()
-                playBtn.click()
+                self.clickEvent(playBtn)
                 self.longSleep()
-                playBtn.click()
+                self.clickEvent(playBtn)
             except selenium.common.exceptions.NoSuchElementException:
                 self.log.warning("播放失败,重试...")
                 self.sleep()
@@ -118,6 +126,7 @@ class Mod(BaseMod):
         if self.firstTime:
             # 使用缓存加快访问速度, 同时减少出错率
             self.drv.refresh()
+            self.firstTime = False
             # self.drv.get(url)
         for i in range(6):
             self.sleep()
@@ -131,15 +140,15 @@ class Mod(BaseMod):
             self._likeVideo()
         # 投币
         if coin:
-            try:
-                self._coinVideo(coin_1)
-            except selenium.common.exceptions.NoSuchElementException:
-                self.log.warning("弹出登录对话框, 自动关闭")
-                # todo: 自动关闭登录对话框
+            # try:
+            self._coinVideo(coin_1)
+            # except selenium.common.exceptions.NoSuchElementException:
+            #     self.log.warning("弹出登录对话框, 自动关闭")
+            #     # todo: 自动关闭登录对话框
         # 分享
         if share:
-            self.log.warning("分享有已知问题, 暂不执行")
-            # self._shareVideo()
+            # self.log.warning("分享有已知问题, 暂不执行")
+            self._shareVideo()
         # 观看视频
         if watch:
             self._watchVideo()
