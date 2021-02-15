@@ -29,9 +29,10 @@ jobs:
     - name: 安装其他软件 / install other sowtware
       run: |
         apt install firefox firefox-geckodriver net-tools
-    - name: 运行 / run
+    - name: 配置并运行 / config and run
       env:
         b_cookie: ${{secrets.cookies}}
       run: |
         echo ${{env.b_cookie}} > config/cookie.txt
+        sed -i "s/HEADLESS = False/HEADLESS = True/" config/config.py
         python3 main.py
