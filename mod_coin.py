@@ -25,6 +25,10 @@ class Mod(BaseMod):
         :param ele: 要点击的元素
         :return: None
         """
+        # 确保窗口足够大
+        self.drv.set_window_size(1700, 1000)
+        self.drv.execute_script("window.scrollTo(0, 0);")
+        # 点击
         act = ActionChains(self.drv)
         act.move_to_element(ele)
         act.click(ele).perform()
