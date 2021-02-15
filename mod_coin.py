@@ -9,26 +9,10 @@ from base_mod import BaseMod
 
 class Mod(BaseMod):
     def __init__(self, run: runner.Runner):
-        """
-        投币模块.\n
-        功能: 点赞, 分享, 观看, 投币特定视频
-
-        :param run: Runner
-        """
         super().__init__(run, "coin", "自动投币模块")
         self.firstTime = True
 
     def clickEvent(self, ele: WebElement):
-        """
-        内部方法: 点击事件
-
-        :param ele: 要点击的元素
-        :return: None
-        """
-        # 确保窗口足够大
-        self.drv.set_window_size(1700, 1000)
-        self.drv.execute_script("window.scrollTo(0, 0);")
-        # 点击
         act = ActionChains(self.drv)
         act.move_to_element(ele)
         act.click(ele).perform()
@@ -36,11 +20,6 @@ class Mod(BaseMod):
         act.reset_actions()
 
     def getVideoUrlInRecommend(self):
-        """
-        从页面右侧的推荐中随机选择视频
-
-        :return: 视频url
-        """
         self.log.info(f"随机获取视频...")
         for i in range(2):
             self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
@@ -55,22 +34,12 @@ class Mod(BaseMod):
         return videoUrl
 
     def _checkFestivalVideo(self):
-        """
-        内部方法: 检查当前视频是否是节日视频
-
-        :return: bool
-        """
         pageUrl = str(self.drv.current_url)
         if pageUrl.find("festival") == -1:
             return False
         return True
 
     def _likeVideo(self):
-        """
-        内部方法: 为当前视频点赞
-
-        :return: None
-        """
         self.log.info("点赞中...")
         likeBtn = self.drv.find_element_by_class_name("like")
 
@@ -94,12 +63,6 @@ class Mod(BaseMod):
         self.log.info("点赞完成" + (", 但是放弃了" if likeRetryNum <= 0 else ""))
 
     def _coinVideo(self, coin_1: bool):
-        """
-        内部方法: 为当前视频投币
-
-        :param coin_1: 数量: True为1个, False为2个
-        :return: None
-        """
         self.log.info("投币中...")
         self.clickEvent(self.drv.find_element_by_class_name("coin"))
         self.sleep()
@@ -115,11 +78,6 @@ class Mod(BaseMod):
         self.log.info("投币完成")
 
     def _shareVideo(self):
-        """
-        内部方法: 分享当前视频到动态
-
-        :return: None
-        """
         self.log.info("分享中...")
         shareBtn1 = self.drv.find_element_by_class_name("share")
         self.sleep()
@@ -140,11 +98,6 @@ class Mod(BaseMod):
         self.log.info("分享完成")
 
     def _watchVideo(self):
-        """
-        内部方法: 观看此视频
-
-        :return: None
-        """
         self.log.info("观看中...")
         while True:
             try:
@@ -171,18 +124,7 @@ class Mod(BaseMod):
             break
         self.log.info("观看完成")
 
-    def run(self, url: str, like=True, coin=True, coin_1=True, share=True, watch=True):
-        """
-        执行操作
-
-        :param watch: 是否观看
-        :param share: 是否分享
-        :param coin_1: 投币数量: True为1个, False为2个
-        :param coin: 是否投币
-        :param like: 是否点赞
-        :param url: 视频url
-        :return: 0: 完成, 1: 跳过节日视频
-        """
+    def coinVideo(self, url: str, like=True, coin=True, coin_1=True, share=True, watch=True):
         self.log.info(f"选定视频[{url}]")
         self.log.info(
             f"点赞[{'x' if like else ' '}] "
@@ -212,7 +154,7 @@ class Mod(BaseMod):
             self._coinVideo(coin_1)
             # except selenium.common.exceptions.NoSuchElementException:
             #     self.log.warning("弹出登录对话框, 自动关闭")
-            #     # 自动关闭登录对话框
+            #     # todo: 自动关闭登录对话框
         # 分享
         if share:
             # self.log.warning("分享有已知问题, 暂不执行")
@@ -225,19 +167,11 @@ class Mod(BaseMod):
         return 0
 
     def loop(self, count=5):
-        """
-        连续执行操作:\n
-        分享一次. 观看, 点赞, 投币count次,
-
-        :param count: 执行次数
-        :return: None
-        """
         self.log.info(f"连续执行{count}次...")
         for i in range(count):
             self.log.info(f"第{i + 1}次执行...")
             # 只分享一次
             while True:
-                if self.run(self.getVideoUrlInRecommend(), share=True if i == 0 else False,
-                            watch=True, coin=True, coin_1=True, like=True) == 0:
+                if self.coinVideo(self.getVideoUrlInRecommend(), share=True if i == 0 else False) == 0:
                     break
             self.sleep()

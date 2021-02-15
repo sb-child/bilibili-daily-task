@@ -6,9 +6,6 @@ from config import config
 
 class Runner:
     def __init__(self):
-        """
-        对core的封装
-        """
         self.log = MyLog("Runner")
         self.biliCore = core.BilibiliCore(
             cookies=config.getCookies(),
@@ -19,35 +16,15 @@ class Runner:
         self.log.info("https://github.com/sb-child/bilibili-daily-task")
 
     def getNickname(self):
-        """
-        获取昵称
-
-        :return: str
-        """
         return self.biliCore.getNickname()
 
     def getCoinCount(self):
-        """
-        获取硬币数量
-
-        :return: 硬币数量
-        """
         return self.biliCore.getCoinCount()
 
     def getBCoinCount(self):
-        """
-        获取B币数量
-
-        :return: B币数量
-        """
         return self.biliCore.getBCoinCount()
 
     def logAccountInfo(self):
-        """
-        在日志中输出账号信息
-
-        :return: None
-        """
         self.log.info("==账号信息==")
         self.log.info(f"昵称: {self.getNickname()}")
         self.log.info(f"硬币: {self.getCoinCount()}")
@@ -55,11 +32,6 @@ class Runner:
         self.log.info("===========")
 
     def loginCheck(self):
-        """
-        尝试登录
-
-        :return: 登录结果
-        """
         self.log.info("正在登录...")
         r = self.biliCore.loginCheck()
         if r:
@@ -71,11 +43,6 @@ class Runner:
         return r
 
     def start(self):
-        """
-        启动Runner
-
-        :return: 登录结果: 0: 正常, -1: 登录失败
-        """
         if not self.loginCheck():
             self.biliCore.quit()
             return -1
