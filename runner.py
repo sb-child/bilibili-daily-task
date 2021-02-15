@@ -14,8 +14,9 @@ class Runner:
             cookies=config.getCookies(),
             headless=config.HEADLESS,
         )
+        self.headless = config.HEADLESS
         self.log.info("Bilibili Daily Task")
-        self.log.info("B站每日任务自动完成工具")
+        self.log.info("B站每日任务自动完成工具" + (" [无头模式, 部分功能将不可用]" if self.headless else ""))
         self.log.info("https://github.com/sb-child/bilibili-daily-task")
 
     def getNickname(self):

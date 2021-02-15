@@ -29,6 +29,7 @@ bilibili-daily-task
 > - ~有时会弹出登录框.~
 > - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
 > - ~窗口较小时, 会报错~ 每次点击时, 固定窗口大小和滚动, 确保要点击的元素可见
+> - 无头模式下, 不能播放视频
 
 ### 功能 / functions
 > - [x] 使用自定义cookies登录
@@ -74,7 +75,7 @@ pip3 install bs4 urllib3 lxml selenium requests qrcode
 sudo pacman -S geckodriver
 
 # debian/ubuntu:
-sudo apt install firefox-geckodriver
+sudo apt install firefox-geckodriver net-tools
 
 其他发行版, 去其软件库搜索...
 ```
