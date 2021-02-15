@@ -14,7 +14,9 @@ def getQrUrl(urlbase: str, header: dict) -> dict:
     return r_json
 
 
-def checkQrStatus(urlbase: str, header: dict, key: str) -> tuple[dict, RequestsCookieJar]:
+def checkQrStatus(urlbase: str, header: dict, key: str):
+    # 兼容 python3.8
+    # -> tuple[dict, RequestsCookieJar]
     ret = requests.post(urlbase, headers=header, data={
         "oauthKey": key
     })
