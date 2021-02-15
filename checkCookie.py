@@ -3,9 +3,13 @@ import auto_config
 
 
 def main():
-    run = runner.Runner()
-    result = run.start()
-    run.biliCore.quit()
+    try:
+        run = runner.Runner()
+        result = run.start()
+        run.biliCore.quit()
+    except AttributeError as e:
+        print(e)
+        result = -2
     if result == 0:
         print("可以正常登录.")
     print("登录失败. 使用扫码登录更新cookies...")
