@@ -36,4 +36,5 @@ jobs:
       run: |
         echo ${{env.b_cookie}} > config/cookie.txt
         sed -i "s/HEADLESS = False/HEADLESS = True/" config/config.py
+        python3 checkCookie.py
         python3 main.py

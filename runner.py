@@ -70,7 +70,7 @@ class Runner:
         else:
             err_title = self.biliCore.drv.title
             err_html = self.biliCore.getPageHtml().prettify()
-            self.log.error("标题: " + err_html)
+            self.log.error("标题: " + err_title)
             self.log.error("html:\n" + err_html)
             self.log.error("登录失败.请检查cookies设置")
         return r
