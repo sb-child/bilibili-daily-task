@@ -55,6 +55,9 @@ bilibili-daily-task
 > - 参考了以下api文档:
 > - [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
 
+### github action
+#### 设置了 github action, 用于自动执行, 正在测试...
+
 ### 如何使用 / how to use
 #### 安装python环境
 > - 版本建议 python3.8 +
