@@ -15,7 +15,7 @@ bilibili-daily-task
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 确保功能基本可用后合并到`main`分支.
 
-[comment]: <> (## 此次合并: 2021/2/15 10:02)
+## 此次合并: 2021/2/15 10:39
 
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
@@ -29,6 +29,7 @@ bilibili-daily-task
 > - ~有时会弹出登录框.~
 > - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
 > - ~窗口较小时, 会报错~ 每次点击时, 固定窗口大小和滚动, 确保要点击的元素可见
+> - 无头模式下, 不能播放视频
 
 ### 功能 / functions
 > - [x] 使用自定义cookies登录
@@ -74,7 +75,7 @@ pip3 install bs4 urllib3 lxml selenium requests qrcode
 sudo pacman -S geckodriver
 
 # debian/ubuntu:
-sudo apt install firefox-geckodriver
+sudo apt install firefox-geckodriver net-tools
 
 其他发行版, 去其软件库搜索...
 ```

@@ -217,8 +217,8 @@ class Mod(BaseMod):
         if share:
             # self.log.warning("分享有已知问题, 暂不执行")
             self._shareVideo()
-        # 观看视频
-        if watch:
+        # 观看视频 (无头模式下不能正常观看)
+        if watch and not self.coreShell.headless:
             self._watchVideo()
         self.drv.back()
         self.log.info("操作完成")
