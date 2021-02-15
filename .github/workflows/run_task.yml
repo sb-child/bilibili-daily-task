@@ -28,6 +28,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: 安装其他软件 / install other sowtware
       run: |
+        sudo apt update
         sudo apt install firefox firefox-geckodriver net-tools
     - name: 配置并运行 / config and run
       env:
