@@ -17,6 +17,23 @@ class Mod(BaseMod):
         """
         super().__init__(run, "coin", "自动投币模块")
         self.firstTime = True
+        self.loginFormsCount = 0
+        self.loginFormsCountMax = 3
+
+    def checkLoginForm(self):
+        self.shortSleep()
+        forms = self.drv.find_elements_by_class_name("bili-mini")
+        if len(forms) < 1:
+            return
+        if self.loginFormsCount > self.loginFormsCountMax:
+            raise ConnectionRefusedError("自动关闭登录窗口的机会已用完, 抛出异常.")
+        self.loginFormsCount += 1
+        # start
+        closeBtn = self.drv.find_elements_by_class_name("bili-mini-close")
+        self.clickEvent(closeBtn)
+        self.sleep()
+        # end
+        self.log.warning(f"检测到弹出了登录窗口, 已自动处理{self.loginFormsCount}次, 共{self.loginFormsCountMax}次机会.")
 
     def clickEvent(self, ele: WebElement):
         """
@@ -28,6 +45,8 @@ class Mod(BaseMod):
         # 确保窗口足够大
         self.drv.set_window_size(1700, 1000)
         self.drv.execute_script("window.scrollTo(0, 0);")
+        # 检测登录窗口
+        self.checkLoginForm()
         # 点击
         act = ActionChains(self.drv)
         act.move_to_element(ele)
