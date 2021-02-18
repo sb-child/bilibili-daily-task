@@ -121,7 +121,8 @@ class Mod(BaseMod):
         """
         self.log.info("投币中...")
         self.clickEvent(self.drv.find_element_by_class_name("coin"))
-        self.sleep()
+        # 等待页面加载完成
+        self.longSleep()
         # 数量
         if coin_1:
             self.clickEvent(self.drv.find_element_by_class_name("left-con"))
