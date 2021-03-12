@@ -63,7 +63,8 @@ bilibili-daily-task
 
 ### github action
 #### 设置了 github action, 用于自动执行, 正在测试...
-> - todo: 第一次不能自动登录
+> - todo: 第一次登录时, 自动设置secret
+> - 因为 github action 的服务器在美国, 所以第一次需要扫码登录
 
 ### 如何使用 / how to use
 #### 安装python环境
