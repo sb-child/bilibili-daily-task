@@ -15,21 +15,24 @@ bilibili-daily-task
 ## 本项目正在逐步完善. 可时刻关注本项目以体验最新的特性和bug修复.
 ## 目前的开发已移至`dev`等分支, 确保功能基本可用后合并到`main`分支.
 
-## 此次合并: 2021/2/15 10:39
-
 ### overview
 > 使用`selenium`模块控制浏览器完成每日任务
 
 ### todo
-> - [x] ~修复bug: `分享` 按钮不能点击 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63)~
-> - [x] ~修复bug: 有时会弹出登录对话框 [link](https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138)~
-> - [x] ~修复bug: 有时, 不能正常点赞~
+> (空)
+
+[comment]: <> (> - [x] ~修复bug: `分享` 按钮不能点击 [link]&#40;https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L63&#41;~)
+
+[comment]: <> (> - [x] ~修复bug: 有时会弹出登录对话框 [link]&#40;https://github.com/sb-child/bilibili-daily-task/blob/main/mod_coin.py#L138&#41;~)
+
+[comment]: <> (> - [x] ~修复bug: 有时, 不能正常点赞~)
 
 ### 已知bug / known bugs
 > - ~有时会弹出登录框.~ 现在可自动关闭登录框
 > - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
 > - ~窗口较小时, 会报错~ 每次点击时, 固定窗口大小和滚动, 确保要点击的元素可见
 > - 无头模式下, 不能播放视频
+> - 在 github action 中, 第一次不能正常登录, 需要手动扫码登录
 
 ### 功能 / functions
 > - [x] 使用自定义cookies登录
@@ -38,10 +41,13 @@ bilibili-daily-task
 > - [ ] 逐步完善...
 > 可提交功能申请issue, 尽量详细说明操作步骤
 
-### 测试 / test
-> - 随机获取视频, 点赞转发 5 次 ([link](https://www.sbchild.top/bdt_1.mp4))
-> - 额外: 随机获取视频, 点赞转发 50+ 次 (尽可能多的找出潜在的bug)
-> - 随机获取视频, 点赞转发 5 次 (目前的版本: 2021/2/15 2:49)
+[comment]: <> (### 测试 / test)
+
+[comment]: <> (> - 随机获取视频, 点赞转发 5 次 &#40;[link]&#40;https://www.sbchild.top/bdt_1.mp4&#41;&#41;)
+
+[comment]: <> (> - 额外: 随机获取视频, 点赞转发 50+ 次 &#40;尽可能多的找出潜在的bug&#41;)
+
+[comment]: <> (> - 随机获取视频, 点赞转发 5 次 &#40;目前的版本: 2021/2/15 2:49&#41;)
 
 ### 特点 / feature
 > - 模拟操控浏览器, 尽可能防止被封杀
@@ -57,6 +63,7 @@ bilibili-daily-task
 
 ### github action
 #### 设置了 github action, 用于自动执行, 正在测试...
+> - todo: 第一次不能自动登录
 
 ### 如何使用 / how to use
 #### 安装python环境

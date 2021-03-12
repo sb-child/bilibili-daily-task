@@ -1,9 +1,10 @@
 import os
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
+
 # --- 用户设置 ---
 # 无头模式
-HEADLESS = False
+HEADLESS = os.path.exists(f"{SCRIPT_PATH}{os.path.sep}s_headless")
 # --- end ---
 
 

@@ -1,0 +1,91 @@
+import os
+import shutil
+import uuid
+from aiohttp import web
+from aiohttp import web_request
+import json
+import random
+from queue import Queue
+import threading
+
+json_header = {"server": "LabelWebServer",
+               "Accept": "application/json",
+               "Content-Type": "application/json"}
+
+text_header = {"server": "bdt"}
+html_header = {"server": "bdt", "content-type": "text/html, charset=utf-8"}
+
+def
+# todo
+def page_404():
+    s = dict()
+    s["return_code"] = "not-found"
+    return json.dumps(s).__str__()
+
+
+def page_404_resp():
+    return web.Response(text=page_404(), headers=text_header, status=404)
+
+
+def get_text_file(nm: str):
+    with open(nm, encoding="utf-8") as op:
+        text = op.read()
+    return text
+
+
+async def web_status(request: web_request.Request):
+    im_name = request.match_info.get('im', "")
+    if im_name not in ["im"]:
+        return page_404_resp()
+    try:
+        nm = f"{im_name}.png"
+        if im_name == "im":
+            imn = get_img(now_uuid)
+            nm = imn[0]
+        text = get_bin(nm)
+    except Exception as e:
+        print(e)
+        return page_404_resp()
+    return web.Response(body=text, headers=text_header, status=200)
+
+
+async def web_setCookie(request: web_request.Request):
+    global now_uuid, now_filename
+    uid: str = request.match_info.get('uuid', "")
+    an: str = request.match_info.get('answer', "")
+    if uid != now_uuid or now_uuid == "":
+        return page_404_resp()
+    now_uuid = ""
+    now_filename = ""
+    submit_answer(uid, an)
+    print(uid, an)
+    try:
+        text = ""
+    except Exception as e:
+        print(e)
+        return page_404_resp()
+    return web.Response(text=text, headers=html_header, status=200)
+
+
+async def web_doAction(request: web_request.Request):
+    global now_uuid, now_filename
+    try:
+        img_save()
+        now_uuid = ""
+        now_filename = ""
+    except Exception as e:
+        print(e)
+        return page_404_resp()
+    return web.Response(text="", headers=html_header, status=200)
+
+
+def main():
+    app = web.Application()
+    app.router.add_get('/status', web_status)
+    app.router.add_post('/set-cookie', web_setCookie)
+    app.router.add_get('/do/{action}', web_doAction)
+    web.run_app(app, host="0.0.0.0", port=23675)
+
+
+if __name__ == '__main__':
+    main()
