@@ -1,3 +1,6 @@
+"""
+仅用于 github action
+"""
 import runner
 import auto_config
 
