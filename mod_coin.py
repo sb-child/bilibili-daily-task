@@ -79,9 +79,14 @@ class Mod(BaseMod):
         :return: 视频url
         """
         self.log.info(f"随机获取视频...")
-        next_btn = self.drv.find_element_by_css_selector(
-            "html body div#app div.international-home div.first-screen.b-wrap "
-            "div.space-between div.rcmd-box-wrap div.btn.next")
+        try:
+            # 新版ui
+            next_btn = self.drv.find_element_by_css_selector(
+                "html body div#app div.international-home div.first-screen.b-wrap "
+                "div.space-between div.rcmd-box-wrap div.btn.next")
+        except selenium.common.exceptions.NoSuchElementException:
+            # 旧版ui
+            next_btn = self.drv.find_element_by_class_name("change-btn")
         for i in range(2):
             # self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
             self.clickEvent(next_btn)
