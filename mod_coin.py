@@ -1,10 +1,28 @@
 import runner
 import bs4
 import random
+import requests
+from config import config
 import selenium.common.exceptions
 from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 from base_mod import BaseMod
+
+
+def _getCoinCount():
+    """
+    暂时不用此方法
+
+    :return:
+    """
+    my_header = {"User-Agent": "Mozilla/5.0 (linux; none) Gecko/84.0 Firefox/84.0"}
+    req = requests.get(
+        "https://api.bilibili.com/x/space/myinfo",
+        cookies=config.getCookiesDict(),
+        header=my_header).json()
+    if req["code"] != 0:
+        return -1.0
+    return float(req["data"]["coins"])
 
 
 class Mod(BaseMod):
@@ -61,8 +79,12 @@ class Mod(BaseMod):
         :return: 视频url
         """
         self.log.info(f"随机获取视频...")
+        next_btn = self.drv.find_element_by_css_selector(
+            "html body div#app div.international-home div.first-screen.b-wrap "
+            "div.space-between div.rcmd-box-wrap div.btn.next")
         for i in range(2):
-            self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
+            # self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
+            self.clickEvent(next_btn)
             self.sleep()
         rootHtml = self.core.getPageHtml()
         self.sleep()
@@ -119,7 +141,16 @@ class Mod(BaseMod):
         :param coin_1: 数量: True为1个, False为2个
         :return: None
         """
+
         self.log.info("投币中...")
+        # coins = _getCoinCount()
+        coins = self.core.getCoinCount()
+        # if coins == -1:
+        #     self.log.error("获取当前硬币数失败.")
+        #     return
+        if coins < 1 if coin_1 else 2:
+            self.log.warning("当前硬币不足, 跳过投币")
+            return
         self.clickEvent(self.drv.find_element_by_class_name("coin"))
         # 等待页面加载完成
         self.longSleep()
