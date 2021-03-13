@@ -32,7 +32,7 @@ bilibili-daily-task
 > - ~分享 功能有时会出问题, 故禁用. 可修改源代码启用~ 目前很少出问题, 故启用
 > - ~窗口较小时, 会报错~ 每次点击时, 固定窗口大小和滚动, 确保要点击的元素可见
 > - 无头模式下, 不能播放视频
-> - 在 github action 中, 第一次不能正常登录, 需要手动扫码登录
+> - ~在 github action 中, 第一次不能正常登录, 需要手动扫码登录~ 见[说明](# github action)
 
 ### 功能 / functions
 > - [x] 使用自定义cookies登录
@@ -64,7 +64,7 @@ bilibili-daily-task
 ### github action
 #### 设置了 github action, 用于自动执行, 正在测试...
 > - todo: 第一次登录时, 自动设置secret
-> - 因为 github action 的服务器在美国, 所以第一次需要扫码登录
+> - 因为 github action 的服务器在国外, 所以第一次需要扫码登录
 
 ### 如何使用 / how to use
 #### 安装python环境
