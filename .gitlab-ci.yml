@@ -21,6 +21,7 @@ all-in-one-job:
     - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
     - apt install -y firefox firefox-geckodriver net-tools
     - echo "$b_cookie" > config/cookie.txt
+    - cat config/cookie.txt
     - mkdir config/s_headless
     - python3 checkCookie.py
     - python3 main.py
