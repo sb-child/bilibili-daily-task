@@ -22,7 +22,7 @@ prepare-job:
 config-job1:
   stage: test
   script:
-    - echo ${{env.b_cookie}} > config/cookie.txt
+    - echo "$env.b_cookie" > config/cookie.txt
     - mkdir config/s_headless
     - python3 checkCookie.py
     
