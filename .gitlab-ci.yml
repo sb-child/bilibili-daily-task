@@ -1,0 +1,30 @@
+
+# default:
+#   image: ubuntu-latest
+
+prepare-job:
+  stage: build
+#   variables:
+#     GIT_CHECKOUT: "true"
+  script:
+    - echo "安装依赖"
+    - sudo apt update
+    - sudo apt install python3 python3-pip
+    - python -m pip install --upgrade pip
+    - pip install bs4 urllib3 lxml selenium requests qrcode
+    - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - echo "安装其他软件"
+    - sudo apt update
+    - sudo apt install firefox firefox-geckodriver net-tools
+
+config-job1:
+  stage: test
+  script:
+    - echo "This job tests something"
+
+
+run-prod:
+  stage: deploy
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+
