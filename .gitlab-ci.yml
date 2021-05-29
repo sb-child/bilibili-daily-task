@@ -9,13 +9,13 @@ prepare-job:
   script:
     - echo "安装依赖"
     - apt update
-    - apt install python3 python3-pip
+    - apt install -y python3 python3-pip
     - python -m pip install --upgrade pip
     - pip install bs4 urllib3 lxml selenium requests qrcode
     - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - echo "安装其他软件"
     - apt update
-    - apt install firefox firefox-geckodriver net-tools
+    - apt install -y firefox firefox-geckodriver net-tools
 
 config-job1:
   stage: test
