@@ -80,23 +80,22 @@ class Mod(BaseMod):
         """
         self.log.info(f"随机获取视频...")
         try:
-            # 新版ui
+            # 旧版ui
             next_btn = self.drv.find_element_by_css_selector(
                 "html body div#app div.international-home div.first-screen.b-wrap "
                 "div.space-between div.rcmd-box-wrap div.btn.next")
         except selenium.common.exceptions.NoSuchElementException:
-            # 旧版ui
-            next_btn = self.drv.find_element_by_class_name("change-btn")
+            # 新版ui
+            next_btn = self.drv.find_element_by_class_name("roll-btn")
         for i in range(2):
             # self.clickEvent(self.drv.find_element_by_class_name("change-btn"))
             self.clickEvent(next_btn)
             self.sleep()
         rootHtml = self.core.getPageHtml()
         self.sleep()
-        videosHtml = rootHtml.select("div.first-screen > div.space-between > div.rcmd-box-wrap > div.rcmd-box > "
-                                     "div.video-card-reco")
+        videosHtml = rootHtml.select("div.recommended-list")
         videoHtml: bs4.Tag = random.choice(videosHtml)
-        videoUrl = "https:" + str(videoHtml.select_one("div.info-box > a").attrs["href"])
+        videoUrl = str(videoHtml.select_one("div.bili-video-card > a").attrs["href"])
         self.log.info(f"获取到视频: {videoUrl}")
         return videoUrl
 

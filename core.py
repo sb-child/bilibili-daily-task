@@ -1,7 +1,9 @@
 import os
+import time
 
 from selenium import webdriver
 from bs4 import BeautifulSoup as Bs
+from selenium.webdriver import ActionChains
 
 
 class BilibiliCore:
@@ -64,6 +66,11 @@ class BilibiliCore:
 
         :return: beautifulSoup对象
         """
+        act = ActionChains(self.drv)
+        ele = self.drv.find_element_by_css_selector("ul.mini-header-right-entry li.header-avatar-wrap")
+        act.move_to_element(ele).perform()
+        time.sleep(1)
+        act.reset_actions()
         bd = self.drv.find_element_by_tag_name("html")
         html: str = bd.get_attribute("outerHTML")
         return Bs(html, "lxml")
@@ -79,6 +86,7 @@ class BilibiliCore:
         if len(loginBtn) > 0 or len(loginBtn1) > 0:
             return False
         else:
+
             self.writeCookies()
             return True
 
@@ -89,7 +97,7 @@ class BilibiliCore:
         :return: str
         """
         html = self.getPageHtml()
-        lb = html.select_one("p.nickname")
+        lb = html.select_one("a.nickname-item")
         return lb.text
 
     def _get_money_count(self, href: str):
@@ -100,7 +108,7 @@ class BilibiliCore:
         """
 
         html = self.getPageHtml()
-        lb = html.select_one(f"a[href=\"{href}\"] > span")
+        lb = html.select_one(f"a[href=\"{href}\"] > span.coin-item__num")
         return float(lb.text)
 
     def getCoinCount(self):
@@ -109,7 +117,7 @@ class BilibiliCore:
 
         :return: 硬币数量
         """
-        return self._get_money_count('https://account.bilibili.com/site/coin')
+        return self._get_money_count('//account.bilibili.com/site/coin')
 
     def getBCoinCount(self):
         """
@@ -117,7 +125,7 @@ class BilibiliCore:
 
         :return: B币数量
         """
-        return int(self._get_money_count('https://pay.bilibili.com/paywallet-fe/bb_balance.html'))
+        return int(self._get_money_count('//pay.bilibili.com/paywallet-fe/bb_balance.html'))
 
     def loginCheck(self):
         """
