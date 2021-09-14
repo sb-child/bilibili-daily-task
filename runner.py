@@ -49,6 +49,9 @@ class Runner:
 
         :return: None
         """
+        if self.headless:
+            self.log.warning("当前为无头模式, 跳过此步骤")
+            return
         self.log.info("==账号信息==")
         self.log.info(f"昵称: {self.getNickname()}")
         self.log.info(f"硬币: {self.getCoinCount()}")
