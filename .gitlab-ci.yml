@@ -1,0 +1,32 @@
+
+# default:
+#   image: ubuntu-latest
+
+all-in-one-job:
+  stage: build
+#   variables:
+#     GIT_CHECKOUT: "true"
+  script:
+    # - echo "安装依赖"
+    - apt update
+    - apt install -y ca-certificates
+    - echo "IyDpu5jorqTms6jph4rkuobmupDnoIHplZzlg4/ku6Xmj5Dpq5ggYXB0IHVwZGF0ZSDpgJ/luqbvvIzlpoLmnInpnIDopoHlj6/oh6rooYzlj5bmtojms6jph4oKZGViIGh0dHBzOi8vb3BlbnR1bmEuY24vdWJ1bnR1LyBmb2NhbCBtYWluIHJlc3RyaWN0ZWQgdW5pdmVyc2UgbXVsdGl2ZXJzZQojIGRlYi1zcmMgaHR0cHM6Ly9vcGVudHVuYS5jbi91YnVudHUvIGZvY2FsIG1haW4gcmVzdHJpY3RlZCB1bml2ZXJzZSBtdWx0aXZlcnNlCmRlYiBodHRwczovL29wZW50dW5hLmNuL3VidW50dS8gZm9jYWwtdXBkYXRlcyBtYWluIHJlc3RyaWN0ZWQgdW5pdmVyc2UgbXVsdGl2ZXJzZQojIGRlYi1zcmMgaHR0cHM6Ly9vcGVudHVuYS5jbi91YnVudHUvIGZvY2FsLXVwZGF0ZXMgbWFpbiByZXN0cmljdGVkIHVuaXZlcnNlIG11bHRpdmVyc2UKZGViIGh0dHBzOi8vb3BlbnR1bmEuY24vdWJ1bnR1LyBmb2NhbC1iYWNrcG9ydHMgbWFpbiByZXN0cmljdGVkIHVuaXZlcnNlIG11bHRpdmVyc2UKIyBkZWItc3JjIGh0dHBzOi8vb3BlbnR1bmEuY24vdWJ1bnR1LyBmb2NhbC1iYWNrcG9ydHMgbWFpbiByZXN0cmljdGVkIHVuaXZlcnNlIG11bHRpdmVyc2UKZGViIGh0dHBzOi8vb3BlbnR1bmEuY24vdWJ1bnR1LyBmb2NhbC1zZWN1cml0eSBtYWluIHJlc3RyaWN0ZWQgdW5pdmVyc2UgbXVsdGl2ZXJzZQojIGRlYi1zcmMgaHR0cHM6Ly9vcGVudHVuYS5jbi91YnVudHUvIGZvY2FsLXNlY3VyaXR5IG1haW4gcmVzdHJpY3RlZCB1bml2ZXJzZSBtdWx0aXZlcnNlCgojIOmihOWPkeW4g+i9r+S7tua6kO+8jOS4jeW7uuiuruWQr+eUqAojIGRlYiBodHRwczovL29wZW50dW5hLmNuL3VidW50dS8gZm9jYWwtcHJvcG9zZWQgbWFpbiByZXN0cmljdGVkIHVuaXZlcnNlIG11bHRpdmVyc2UKIyBkZWItc3JjIGh0dHBzOi8vb3BlbnR1bmEuY24vdWJ1bnR1LyBmb2NhbC1wcm9wb3NlZCBtYWluIHJlc3RyaWN0ZWQgdW5pdmVyc2UgbXVsdGl2ZXJzZQoK" | base64 -d | tee /etc/apt/sources.list
+    - apt update
+    - apt install -y python3 python3-pip
+    - python3 -m pip install --upgrade pip
+    - pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    - pip3 install bs4 urllib3 lxml selenium requests qrcode
+    # - echo "安装其他软件"
+    - apt update
+    - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
+    - apt install -y firefox firefox-geckodriver net-tools
+    - mkdir config/s_headless
+    - echo -n "$b_cookie" > config/cookie.txt
+    # - cat config/cookie.txt
+    - python3 checkCookie.py
+    - python3 main.py
+    - echo -n "$b_cookie2" > config/cookie.txt
+    - python3 checkCookie.py
+    - python3 main.py
+
+

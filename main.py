@@ -20,7 +20,7 @@ def main():
     # mod1.loop()
     time.sleep(3)
     br.biliCore.quit()
-
+    """
 
 if __name__ == '__main__':
     main()
