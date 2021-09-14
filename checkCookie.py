@@ -15,6 +15,7 @@ def main():
         result = -2
     if result == 0:
         print("可以正常登录.")
+        return
     print("登录失败. 使用扫码登录更新cookies...")
     auto_config.main()
     print("登录完成. cookies 内容:")
